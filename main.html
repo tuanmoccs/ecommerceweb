@@ -1,0 +1,59 @@
+<a href="https://colorlib.com/wp/templates/"><img src="https://colorlib.com/wp/wp-content/uploads/sites/2/colorlib-push-logo.png" alt="Colorlib logo"></a>
+<h1 style="text-align:center;">Thank you for using our template!</h1>
+<p style="text-align:center;">For more awesome templates please visit <strong><a href="https://colorlib.com/wp/templates/">Colorlib</a></strong>.</p>
+<br>
+<p style="text-align:center; color:red;"><strong>Copyright information for the template can't be altered/removed unless you purchase a license.</strong>
+
+<p style="text-align:center;"><strong>Removing copyright information without the license will result in suspension of your hosting and/or domain name(s).</strong>
+
+<p style="text-align:center;"><strong>More information about the license is available <a href="https://colorlib.com/wp/licence/">here</a></strong>.</p>
+
+<style>
+img {
+  margin: 0 auto;
+  display: block;
+  margin-top: 20%;
+}
+</style>
+<div class="sidebar__item">
+  <div class="latest-product__text">
+      <h4>Sản phẩm mới</h4>
+      <div class="latest-product__slider owl-carousel">
+          <div class="latest-prdouct__slider__item">
+          <?php
+  while($row = mysqli_fetch_assoc($result)){ 
+      $arr_img = explode(";",$row['images'])
+  ?>
+              <a href="chitietsanpham.php?id=<?=$row['id']?>" class="latest-product__item">
+                  <div class="latest-product__item__pic">
+                      <img src="quantri/<?=$arr_img[0]?>" alt="">
+                  </div>
+                  <div class="latest-product__item__text">
+                      <h6><?=$row['pname']?></h6>
+                      <span><?=$row['disscounted_price']?></span>
+                  </div>
+              </a>
+              <?php } ?>
+          </div>
+          <div class="latest-prdouct__slider__item">
+          <?php
+  require('ketnoi/connect.php');
+  $sql_str = "SELECT * FROM products WHERE name LIKE '%Điện thoại%' LIMIT 3 OFFSET 3;";
+  $result = mysqli_query($conn,$sql_str);
+  while($row = mysqli_fetch_assoc($result)){ 
+      $arr_img = explode(";",$row['images'])
+  ?>
+              <a href="chitietsanpham.php?id=<?=$row['id']?>" class="latest-product__item">
+                  <div class="latest-product__item__pic">
+                      <img src="quantri/<?=$arr_img[0]?>" alt="">
+                  </div>
+                  <div class="latest-product__item__text">
+                      <h6><?=$row['name']?></h6>
+                      <span><?=$row['disscounted_price']?></span>
+                  </div>
+              </a>
+              <?php } ?>
+          </div>
+      </div>
+  </div>
+</div>
